@@ -1,5 +1,5 @@
-const URL = require("");
-const Click = require("");
+const URL = require("../models/Url");
+const Click = require("../models/Click");
 const   {nanoid} = require("nanoid");
 const QRcode = require("qrcode");
 const useragent = require("useragent");

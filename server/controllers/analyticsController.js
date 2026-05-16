@@ -1,5 +1,5 @@
-const Click = require("");
-const URL = require("");
+const URL = require("../models/Url");
+const Click = require("../models/Click");
 
 const getAnalytics = async(req,res)=>{
     try{
