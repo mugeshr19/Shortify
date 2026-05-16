@@ -73,8 +73,45 @@ const getUrl = async (req, res) => {
   }
 };
 
+const deleteUrl = async (req, res) => {
+  try {
+
+    const { id } = req.params;
+
+    const url = await URL.findById(id);
+
+    if (!url) {
+      return res.status(404).json({
+        error: "URL not found",
+      });
+    }
+
+    if (url.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        error: "Unauthorized",
+      });
+    }
+
+    await Click.deleteMany({
+      url: id,
+    });
+
+    await URL.findByIdAndDelete(id);
+
+    res.json({
+      message: "URL deleted successfully",
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      error: "Server Error",
+    });
+  }
+};
+
 module.exports = {
   shortenUrl,
   redirectUrl,
   getUrl,
+  deleteUrl,
 };
