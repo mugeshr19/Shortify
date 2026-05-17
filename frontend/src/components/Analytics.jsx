@@ -51,7 +51,7 @@ function LinkAnalyticsCard({ url, token }) {
     if (data) { setOpen((o) => !o); return }
     setLoading(true)
     try {
-      const res = await fetch(`http://localhost:3000/api/analytics/${url._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/analytics/${url._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       const json = await res.json()
@@ -188,7 +188,7 @@ export default function Analytics() {
 
   useEffect(() => {
     if (!token) { navigate("/"); return }
-    fetch("http://localhost:3000/api/url/myurls", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/url/myurls`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => r.json())
