@@ -8,7 +8,10 @@ console.log("MONGO_URL:", MONGO_URL ? "found" : "undefined");
 
 const { redirectUrl } = require("./controllers/urlController");
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["https://shortify-nu-jet.vercel.app", "http://localhost:5173"],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
