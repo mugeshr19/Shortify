@@ -1,6 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
+const MONGO_URL = process.env.MONGO_URL;
+console.log("MONGO_URL:", MONGO_URL ? "found" : "undefined");
 
 const { redirectUrl } = require("./controllers/urlController");
 const app = express();
@@ -9,16 +13,13 @@ app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/url", require("./routes/urlRoutes"));
-app.use(
-  "/api/analytics",
-  require("./routes/analyticsRoutes")
-);
+app.use("/api/analytics",require("./routes/analyticsRoutes"));
 app.get("/:shortCode", redirectUrl);
 
 const PORT = process.env.PORT || 8080;
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(MONGO_URL)
   .then(() => {
     console.log("MongoDB connected successfully");
 

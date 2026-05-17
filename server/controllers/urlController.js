@@ -92,9 +92,7 @@ const deleteUrl = async (req, res) => {
       });
     }
 
-    await Click.deleteMany({
-      url: id,
-    });
+    await Click.deleteMany({url: id});
 
     await URL.findByIdAndDelete(id);
 
@@ -103,9 +101,7 @@ const deleteUrl = async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({
-      error: "Server Error",
-    });
+    res.status(500).json({error: "Server Error",});
   }
 };
 

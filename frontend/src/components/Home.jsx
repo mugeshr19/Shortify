@@ -86,8 +86,8 @@ export default function HomePage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden text-white font-sans">
-      <Particles className="absolute inset-0" quantity={200} ease={30} color="#ffffff" refresh />
+    <div className="relative min-h-screen bg-black text-white font-sans">
+      <Particles className="fixed inset-0" quantity={200} ease={30} color="#ffffff" refresh />
 
       {/* QR Modal */}
       {qrModal && (
